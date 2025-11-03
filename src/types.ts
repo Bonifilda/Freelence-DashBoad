@@ -1,11 +1,9 @@
-export type ProjectStatus = "pending" | "in-progress" | "completed";
-export type PaymentStatus = "paid" | "unpaid";
-
+// src/types.ts
 export interface Client {
   id: string;
   name: string;
   country: string;
-  email?: string;
+  email?: string; // Optional property as required
 }
 
 export interface Project {
@@ -13,18 +11,14 @@ export interface Project {
   clientId: string;
   title: string;
   budget: number;
-  status: ProjectStatus;
-  paymentStatus: PaymentStatus;
+  status: "pending" | "in-progress" | "completed"; // Union type
+  paymentStatus: "paid" | "unpaid"; // Union type
 }
 
 export interface Payment {
   projectId: string;
   amount: number;
-  date: string; 
+  date: string; // ISO format, e.g., "2025-11-03"
 }
 
-export interface AppState {
-  clients: Client[];
-  projects: Project[];
-  payments: Payment[];
-}
+
