@@ -1,7 +1,5 @@
 import { createContext, useReducer, type ReactNode } from 'react';
 import {type Client, type Payment, type Project,   } from '../types';
-
-// === 1. Global State Interface ===
 interface FreelanceState {
   clients: Client[];
   projects: Project[];
@@ -76,8 +74,6 @@ const initialState: FreelanceState = {
     { projectId: '1', amount: 5000, date: '2025-11-03' }, // Example recent payment
   ],
 };
-
-// === 4. Reducer with Type Narrowing ===
 const freelanceReducer = (state: FreelanceState, action: FreelanceAction): FreelanceState => {
   switch (action.type) {
     case 'ADD_PAYMENT':

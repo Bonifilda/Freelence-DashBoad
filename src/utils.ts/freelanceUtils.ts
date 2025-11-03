@@ -1,7 +1,5 @@
-// src/utils/freelanceUtils.ts
-import {type Client,type Project, type Payment } from '../types';
 
-// Count paid vs unpaid projects
+import {type Client,type Project, type Payment } from '../types';
 export const countPaidUnpaid = (projects: Project[]): { paid: number; unpaid: number } => {
   return projects.reduce(
     (acc, proj) => {
@@ -11,19 +9,14 @@ export const countPaidUnpaid = (projects: Project[]): { paid: number; unpaid: nu
     { paid: 0, unpaid: 0 }
   );
 };
-
-// Find client by ID safely (type narrowing for undefined)
 export const findClientById = (clients: Client[], id: string): Client | undefined => {
   return clients.find((client) => client.id === id);
 };
 
-// Record a new payment with validation (ensure amount > 0)
 export const validateAndCreatePayment = (projectId: string, amount: number, date: string): Payment | null => {
-  if (amount <= 0) return null; // Validation
+  if (amount <= 0) return null; 
   return { projectId, amount, date };
 };
-
-// Filter projects by status or payment
 export const filterProjects = (
   projects: Project[],
   status?: Project['status'],
@@ -41,8 +34,6 @@ export const searchByName = <T extends { name?: string; title?: string }>(items:
     return name.toLowerCase().includes(query.toLowerCase());
   });
 };
-
-// Dashboard stats (totals)
 export const getDashboardStats = (projects: Project[], payments: Payment[]) => {
   const totalProjects = projects.length;
   const { paid, unpaid } = countPaidUnpaid(projects);
