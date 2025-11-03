@@ -43,7 +43,7 @@ export const ProjectList = ({ projects, clients }: ProjectListProps) => {
         return (
           <div
             key={proj.id}
-            className="p-6 rounded-xl border bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm hover:shadow-md transition-all"
+            className="p-6 rounded-xl border bg-white dark:bg-sky-800 dark:border-sky-700 shadow-sm hover:shadow-md transition-all"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
