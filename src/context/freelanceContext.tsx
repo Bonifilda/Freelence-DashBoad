@@ -7,13 +7,9 @@ interface FreelanceState {
   projects: Project[];
   payments: Payment[];
 }
-
-// === 2. Discriminated Union for Actions ===
 type FreelanceAction =
   | { type: 'ADD_PAYMENT'; payload: Payment }
   | { type: 'MARK_PROJECT_PAID'; payload: { projectId: string } };
-
-// === 3. Initial State with 6 Clients, 6 Projects, 4 Payments ===
 const initialState: FreelanceState = {
   clients: [
     { id: '1', name: 'Client A', country: 'USA', email: 'a@example.com' },
