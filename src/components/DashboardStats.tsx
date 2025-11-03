@@ -23,7 +23,7 @@ export const DashboardStats = ({ projects, payments }: DashboardStatsProps) => {
       {cards.map((card) => (
         <div
           key={card.label}
-          className="p-6 rounded-xl bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-sm hover:shadow-lg transition-all"
+          className="p-6 rounded-xl bg-white dark:bg-sky-800 border dark:border-sky-700 shadow-sm hover:shadow-lg transition-all"
         >
           <div className="flex items-center justify-between mb-3">
             <div className={`p-3 rounded-lg bg-${card.color}-100 dark:bg-${card.color}-900`}>

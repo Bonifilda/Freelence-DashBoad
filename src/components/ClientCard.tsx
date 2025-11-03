@@ -8,7 +8,7 @@ interface ClientCardProps {
 
 export const ClientCard = ({ client }: ClientCardProps) => {
   return (
-    <div className="group p-6 rounded-xl border bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300">
+    <div className="group p-6 rounded-xl border bg-white dark:bg-sky-800 dark:border-sky-700 shadow-sm hover:shadow-lg transition-all duration-300">
       <div className="flex items-center gap-3 mb-3">
         <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
           <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
