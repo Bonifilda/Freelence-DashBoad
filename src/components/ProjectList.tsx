@@ -1,15 +1,14 @@
 // src/components/ProjectList.tsx
 import { useContext } from 'react';
 
-import {type Project } from '../types';
-import { findClientById } from '../utils.ts/freelanceUtils';
-
+import {type Project, type Client } from '../types';
+import { validateAndCreatePayment, findClientById } from '../utils.ts/freelanceUtils';
+import { CheckCircle, AlertCircle, DollarSign } from 'lucide-react';
 import { FreelanceContext } from '../context/freelanceContext';
-import { AlertCircle, CheckCircle, DollarSign } from 'lucide-react';
 
 interface ProjectListProps {
   projects: Project[];
-  clients: Project['clientId'] extends string ? { id: string; name: string }[] : never;
+  clients: Client[];
 }
 
 export const ProjectList = ({ projects, clients }: ProjectListProps) => {
@@ -36,10 +35,19 @@ export const ProjectList = ({ projects, clients }: ProjectListProps) => {
     );
   };
 
+  const handlePayNow = (project: Project) => {
+    const payment = validateAndCreatePayment(project.id, project.budget, new Date().toISOString());
+    if (payment) {
+      dispatch({ type: 'ADD_PAYMENT', payload: payment });
+      // Auto-mark as paid since full amount is paid
+      dispatch({ type: 'MARK_PROJECT_PAID', payload: { projectId: project.id } });
+    }
+  };
+
   return (
     <div className="space-y-4">
       {projects.map((proj) => {
-        const client = findClientById(clients as any, proj.clientId);
+        const client = findClientById(clients, proj.clientId);
         return (
           <div
             key={proj.id}
@@ -60,13 +68,21 @@ export const ProjectList = ({ projects, clients }: ProjectListProps) => {
             <div className="flex justify-between items-center">
               <div>{getStatusBadge(proj.status)}</div>
               {proj.paymentStatus === 'unpaid' && (
-                <button
-                  onClick={() => dispatch({ type: 'MARK_PROJECT_PAID', payload: { projectId: proj.id } })}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2 text-sm"
-                >
-                  <DollarSign className="w-4 h-4" />
-                  Mark as Paid
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => dispatch({ type: 'MARK_PROJECT_PAID', payload: { projectId: proj.id } })}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2 text-sm"
+                  >
+                    Mark as Paid
+                  </button>
+                  <button
+                    onClick={() => handlePayNow(proj)}
+                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2 text-sm"
+                  >
+                    <DollarSign className="w-4 h-4" />
+                    Pay Now
+                  </button>
+                </div>
               )}
             </div>
           </div>

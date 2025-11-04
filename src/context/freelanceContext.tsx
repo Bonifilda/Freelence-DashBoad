@@ -123,5 +123,10 @@ export const FreelanceProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+export const getTotalPaidForProject = (payments: Payment[], projectId: string): number => {
+  return payments
+    .filter(p => p.projectId === projectId)
+    .reduce((sum, p) => sum + p.amount, 0);
+};
 
 

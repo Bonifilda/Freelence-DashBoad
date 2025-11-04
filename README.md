@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ Freelance Dashboard (React + TypeScript)
 
-Currently, two official plugins are available:
+Amodern, type-safe freelance management dashboard that helps freelancers track clients, projects, and payments with a clean UI, dark mode, and real-time state management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ Technologies Used
+ Technology :Purpose
+React:UI framework 
+TypeScript :Strong typing, interfaces, discriminated unions |
+Vite  :Fast dev server & build tool 
+Tailwind CSS: Responsive, modern styling 
+Lucide Icons : Beautiful SVG icons 
+Context API + useReducer :Global state management 
+ Main Features
 
-## React Compiler
+- 6 Clients with name, country, optional email
+- 6 Projects linked to clients with status & payment tracking
+- 4 Payment Records in ISO date format
+- Mark Project as Paid (type-safe state update)
+- Search Projects by title
+-  Projects by status or payment
+- Dashboard Stats(total projects, paid/unpaid, revenue)
+- Dark Mode Toggle
+- Responsive Sidebar Navigation
+- Status Badges(Pending, In Progress, Completed)
+- Payment Badges (Paid/Unpaid)
+- Type-Safe Components & Actions
+- Utility Functions (count, filter, search, validation)
+ Folder Structure
+src/
+├── components/         
+│   ├── ClientCard.tsx
+│   ├── ProjectList.tsx
+│   └── DashboardStats.tsx
+├── context/            
+│   └── FreelanceContext.tsx
+├── utils/              
+│   └── freelanceUtils.ts
+├── types.ts           
+├── App.tsx             
+└── main.tsx            
+  3 screenshots while running `npm run dev`:
+   - Dashboard (light mode)
+   - Projects tab (dark mode)
+   - Clients tab
+   - Save as:
+     - dashboard-light.png
+     - projects-dark.png
+     - clients.png
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
