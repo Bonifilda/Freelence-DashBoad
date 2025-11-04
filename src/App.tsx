@@ -173,7 +173,7 @@ function App() {
                       }
                     }
                   }}
-                  className="px-4 py-2 border rounded-lg w-full sm:w-auto bg-white dark:bg-gray-800"
+                  className="px-4 py-2 border rounded-lg w-full sm:w-auto bg-white dark:bg-sky-400"
                 >
                   <option value="">-- Select Project to Pay --</option>
                   {projects

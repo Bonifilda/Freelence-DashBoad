@@ -40,11 +40,7 @@ src/
 ├── App.tsx             
 └── main.tsx            
   3 screenshots while running `npm run dev`:
-   - Dashboard (light mode)
-   - Projects tab (dark mode)
-   - Clients tab
-   - Save as:
-     - dashboard-light.png
-     - projects-dark.png
-     - clients.png
-
+     ![alt text](image.png)
+     ![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
